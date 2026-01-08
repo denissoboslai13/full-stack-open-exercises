@@ -37,7 +37,7 @@ blogsRouter.post('/', tokenExtractor, userExtractor, async (request, response) =
 
   const blog = new Blog({
     title: body.title,
-    author: user.name,
+    author: body.name || user.name,
     url: body.url,
     likes: body.likes || 0,
     user: user._id
@@ -66,7 +66,7 @@ blogsRouter.delete('/:id', tokenExtractor, userExtractor, async (request, respon
 })
 
 blogsRouter.put('/:id', tokenExtractor, userExtractor, async (request, response, next) => {
-  const { title, url, likes } = request.body
+  const { title, author, url, likes } = request.body
   
   const decodedToken = jwt.verify(request.token, process.env.SECRET)
   if (!decodedToken.id) {
@@ -78,7 +78,7 @@ blogsRouter.put('/:id', tokenExtractor, userExtractor, async (request, response,
   if (blog.user.toString() === user.id.toString()){
 
       blog.title = title
-      blog.author = user.name
+      blog.author = user.name || author
       blog.url = url
       blog.likes = likes
 
