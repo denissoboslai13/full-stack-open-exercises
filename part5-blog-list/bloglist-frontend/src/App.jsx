@@ -39,7 +39,7 @@ const App = () => {
         const blogWithUser = { ...returnedBlog, user: user }
         setBlogs(blogs.concat(blogWithUser))
       })
-      setSuccessMessage(`a new blog ${blogObject.title} by ${blogObject.author} added`)
+      setSuccessMessage(`a new blog ${blogObject.title} by ${user.name} added`)
       setTimeout(() => {
         setSuccessMessage(null)
       }, 5000)

@@ -14,7 +14,7 @@ const Blog = ({ blog, updateBlog, delBlog }) => {
     borderWidth: 1,
     marginBottom: 5
   }
-  
+
   return (
     <div style={blogStyle} data-testid="blog">
       <div>

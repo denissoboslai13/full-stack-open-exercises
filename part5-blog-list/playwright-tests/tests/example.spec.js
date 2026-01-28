@@ -63,13 +63,12 @@ describe('Blog app', () => {
 
       test('one can be deleted', async ({ page }) => {
         await page.pause()
-        const thirdBlogText = page.getByText('third blog by Denis')
-        const thirdBlogElement = thirdBlogText.locator('..')
+        const thirdBlogElement = page.getByTestId('blog').nth(2)
       
         await thirdBlogElement.getByRole('button', { name: 'view' }).click()
         await thirdBlogElement.getByRole('button', { name: 'delete' }).click()
-        await page.getByText('third blog by Denis').waitFor()
-        await expect(page.getByText('third blog by Denis')).not.toBeVisible()
+        await thirdBlogElement.waitFor()
+        await expect(thirdBlogElement).not.toBeVisible()
       })
       test('different user cannot see delete button', async ({ page, request }) => {
         await request.post('/api/users', {

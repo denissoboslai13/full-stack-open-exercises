@@ -3,12 +3,12 @@ import userEvent from '@testing-library/user-event'
 import Blog from './Blog'
 
 test('renders only title and author initially', () => {
-    const blog = {
-        title: "Component testing",
-        author: "Admin",
-        likes: 12,
-        url: "something something"
-    }
+  const blog = {
+    title: 'Component testing',
+    author: 'Admin',
+    likes: 12,
+    url: 'something something'
+  }
 
   render(<Blog blog={blog} />)
 

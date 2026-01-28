@@ -13,12 +13,13 @@ const createBlog = async (page, title, url) => {
   await page.getByRole('textbox', { name: 'Title'}).fill(title)
   await page.getByRole('textbox', { name: 'Url'}).fill(url)
   await page.getByRole('button', { name: 'create' }).click()
-  await page.locator('div').filter({ hasText: title}).nth(3).waitFor()
+  await page.getByTestId('blog').filter({ hasText: title }).waitFor()
 }
 
-const getBlog = async (page, title) => {
-    const titleText = page.getByText(`${title} by Denis`)
-    return titleText.locator('..')
+const getBlog = (page, title) => {
+  return page
+    .getByTestId('blog')
+    .filter({ hasText: title })
 }
 
 const likeNTimes = async (blog, times) => {
